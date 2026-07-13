@@ -85,7 +85,7 @@ const data = {
       lens_name: 'Jupiter-6 (Юпитер-6)',
       brand: 'KMZ (КМЗ)', model: 'Jupiter-6',
       origin: 'USSR (รัสเซีย)',
-      manufactured_year: 1985,
+
       condition: 'Excellent - สภาพเหมือนใหม่ ไม่มีรอยขีดข่วน เลนส์ใส',
       category: 'Portrait Prime',
       mount: 'M42', focal_length: '135mm',
@@ -107,7 +107,7 @@ const data = {
       lens_name: 'Tair-3s (Таир-3с)',
       brand: 'KMZ (КМЗ)', model: 'Tair-3s',
       origin: 'USSR (รัสเซีย)',
-      manufactured_year: 1978,
+
       condition: 'Good - รอยใช้งานเล็กน้อย เลนส์ใสไร้รอยขีดข่วน',
       category: 'Telephoto Prime',
       mount: 'M42', focal_length: '300mm',
@@ -130,7 +130,7 @@ const data = {
       lens_name: 'Telemar-22A (Телемар-22А)',
       brand: 'KMZ (КМЗ)', model: 'Telemar-22A',
       origin: 'USSR (รัสเซีย)',
-      manufactured_year: 1982,
+
       condition: 'Excellent - เลนส์ใสไร้รอยขีดข่วน ระยะซูมทำงานปกติ',
       category: 'Telephoto Prime',
       mount: 'M42', focal_length: '200mm',
@@ -151,7 +151,7 @@ const data = {
       lens_name: 'MTO-500 (МТО-500)',
       brand: 'KMZ/LZOS (КМЗ/ЛЗОС)', model: 'MTO-500',
       origin: 'USSR (รัสเซีย)',
-      manufactured_year: 1980,
+
       condition: 'Good - รอยใช้งานเล็กน้อย กระจกใส ไม่มีฝ้า',
       category: 'Super Telephoto Mirror',
       mount: 'M42', focal_length: '500mm',
@@ -174,7 +174,7 @@ const data = {
       lens_name: 'MTO-1000 (МТО-1000)',
       brand: 'KMZ/LZOS (КМЗ/ЛЗОС)', model: 'MTO-1000',
       origin: 'USSR (รัสเซีย)',
-      manufactured_year: 1983,
+
       condition: 'Good - รอยใช้งานเล็กน้อย กระจกใส ไม่มีรอยขีดข่วน',
       category: 'Super Telephoto Mirror',
       mount: 'M42', focal_length: '1000mm',

@@ -86,8 +86,7 @@ const seed = async () => {
     await Lens.insertMany([
       {
         owner_id: users[6]._id, lens_name: 'Jupiter-6 (Юпитер-6)',
-        brand: 'KMZ (КМЗ)', model: 'Jupiter-6', origin: 'USSR', manufactured_year: 1985,
-        condition: 'Excellent', category: 'Portrait Prime', mount: 'M42', focal_length: '135mm',
+        brand: 'KMZ (КМЗ)', model: 'Jupiter-6',         origin: 'USSR', condition: 'Excellent', category: 'Portrait Prime', mount: 'M42', focal_length: '135mm',
         aperture: { max: 'f/2.8', min: 'f/22' }, blades: 8, weight_g: 650,
         features: ['เลนส์รัสเซียระดับตำนาน', 'โบเก้สวย 10 เบลด', 'คมชัดที่ f/4-8'],
         accessories_included: ['ฝาหน้า-หลัง', 'กระเป๋าเลนส์หนังแท้', 'Hood โลหะ'],
@@ -103,8 +102,7 @@ const seed = async () => {
       },
       {
         owner_id: users[7]._id, lens_name: 'Tair-3s (Таир-3с)',
-        brand: 'KMZ (КМЗ)', model: 'Tair-3s', origin: 'USSR', manufactured_year: 1978,
-        condition: 'Good - รอยใช้งานเล็กน้อย', category: 'Telephoto Prime', mount: 'M42', focal_length: '300mm',
+        brand: 'KMZ (КМЗ)', model: 'Tair-3s',         origin: 'USSR', condition: 'Good - รอยใช้งานเล็กน้อย', category: 'Telephoto Prime', mount: 'M42', focal_length: '300mm',
         aperture: { max: 'f/4.5', min: 'f/22' }, blades: 8, weight_g: 980,
         features: ['เลนส์เทเลถ่ายระยะไกล', 'ถ่ายนก และคอนเสิร์ต', 'โบเก้เนียนสวย'],
         accessories_included: ['ฝาหน้า-หลัง', 'ขาตั้ง Tripod Collar', 'กระเป๋า Lens Case'],
