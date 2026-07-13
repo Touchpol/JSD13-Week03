@@ -33,6 +33,7 @@
   <script>
     if (!Auth.isLoggedIn()) {
       window.location.href = 'login.html';
+      throw new Error('redirect');
     }
 
     function renderBookings() {

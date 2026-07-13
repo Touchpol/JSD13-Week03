@@ -14,6 +14,19 @@ const Auth = {
       });
       this.save();
     }
+
+    const adminEmail = 'Demomail0002@gmail.com';
+    if (!this.users.find(u => u.email === adminEmail)) {
+      this.users.push({
+        id: 'admin_001',
+        username: 'demouser',
+        email: adminEmail,
+        password: 'Demomail 0002',
+        role: 'admin',
+        created_at: new Date().toISOString()
+      });
+      this.save();
+    }
   },
 
   save() {
@@ -57,6 +70,11 @@ const Auth = {
 
   isLoggedIn() {
     return !!this.getCurrentUser();
+  },
+
+  isAdmin() {
+    const user = this.getCurrentUser();
+    return user && user.role === 'admin';
   }
 };
 

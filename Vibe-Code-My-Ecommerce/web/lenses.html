@@ -34,6 +34,7 @@
     const user = Auth.getCurrentUser();
     if (!user) {
       window.location.href = 'login.html';
+      throw new Error('redirect');
     }
 
     function renderLenses() {

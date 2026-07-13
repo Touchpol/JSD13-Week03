@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - SnapPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-layout { display: flex; min-height: calc(100vh - 120px); }
+    .admin-sidebar { width: 220px; background: #1a1a2e; color: #fff; padding: 1.5rem; flex-shrink: 0; }
+    .admin-sidebar h3 { margin-bottom: 1rem; font-size: 1.1rem; color: #e94560; }
+    .admin-sidebar a { display: block; color: #ccc; padding: 0.5rem 0; text-decoration: none; border-bottom: 1px solid #333; }
+    .admin-sidebar a:hover { color: #fff; }
+    .admin-content { flex: 1; padding: 2rem; }
+    .admin-content h1 { margin-bottom: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #f5f5f5; font-weight: 600; }
+    tr:hover { background: #f9f9f9; }
+    .badge { padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+    .badge-pending { background: #fff3cd; color: #856404; }
+    .badge-confirmed { background: #d4edda; color: #155724; }
+    .badge-completed { background: #cce5ff; color: #004085; }
+    .badge-cancelled { background: #f8d7da; color: #721c24; }
+    .btn-sm { padding: 0.3rem 0.6rem; font-size: 0.8rem; margin: 0 0.15rem; cursor: pointer; }
+    .stats { display: flex; gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { flex: 1; padding: 1.2rem; border-radius: 8px; text-align: center; color: #fff; }
+    .stat-card h3 { font-size: 2rem; margin: 0; }
+    .stat-card p { margin: 0.3rem 0 0; opacity: 0.9; }
+    .stat-total { background: #4361ee; }
+    .stat-pending { background: #f72585; }
+    .stat-confirmed { background: #06d6a0; }
+    .stat-completed { background: #118ab2; }
+    .empty-state { text-align: center; padding: 3rem; color: #999; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">หน้าแรก</a>
+      <span id="navUser"></span>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <div class="admin-sidebar">
+      <h3>Admin Panel</h3>
+      <a href="admin.html">จัดการการจอง</a>
+      <a href="index.html">กลับหน้าแรก</a>
+      <a href="#" id="logoutBtn">ออกจากระบบ</a>
+    </div>
+    <div class="admin-content" id="adminContent">
+      <h1>จัดการการจองทั้งหมด</h1>
+      <div id="adminView"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (!Auth.isLoggedIn() || !Auth.isAdmin()) {
+      window.location.href = 'index.html';
+      throw new Error('redirect');
+    }
+
+    function loadBookings() {
+      return JSON.parse(localStorage.getItem('snapplay_bookings') || '[]');
+    }
+
+    function saveBookings(bookings) {
+      localStorage.setItem('snapplay_bookings', JSON.stringify(bookings));
+    }
+
+    function getStats(bookings) {
+      return {
+        total: bookings.length,
+        pending: bookings.filter(b => b.status === 'pending').length,
+        confirmed: bookings.filter(b => b.status === 'confirmed').length,
+        completed: bookings.filter(b => b.status === 'completed').length,
+        cancelled: bookings.filter(b => b.status === 'cancelled').length
+      };
+    }
+
+    function updateStatus(id, newStatus) {
+      let bookings = loadBookings();
+      const booking = bookings.find(b => b.id === id);
+      if (booking) {
+        booking.status = newStatus;
+        saveBookings(bookings);
+        render();
+      }
+    }
+
+    function render() {
+      const bookings = loadBookings();
+      const stats = getStats(bookings);
+      const container = document.getElementById('adminView');
+
+      const typeLabels = { lens: '🔭 เช่าเลนส์', photographer: '📸 จองช่างภาพ', streamer: '🎮 ซื้อเวลาสตรีมเมอร์' };
+      const statusBadge = { pending: 'badge-pending', confirmed: 'badge-confirmed', completed: 'badge-completed', cancelled: 'badge-cancelled' };
+      const statusText = { pending: 'รอยืนยัน', confirmed: 'ยืนยันแล้ว', completed: 'เสร็จสิ้น', cancelled: 'ยกเลิก' };
+
+      container.innerHTML = `
+        <div class="stats">
+          <div class="stat-card stat-total"><h3>${stats.total}</h3><p>ทั้งหมด</p></div>
+          <div class="stat-card stat-pending"><h3>${stats.pending}</h3><p>รอยืนยัน</p></div>
+          <div class="stat-card stat-confirmed"><h3>${stats.confirmed}</h3><p>ยืนยันแล้ว</p></div>
+          <div class="stat-card stat-completed"><h3>${stats.completed}</h3><p>เสร็จสิ้น</p></div>
+        </div>
+        ${bookings.length === 0 ? '<div class="empty-state">ยังไม่มีการจอง</div>' : `
+        <table>
+          <thead>
+            <tr>
+              <th>วันที่จอง</th>
+              <th>ผู้ใช้</th>
+              <th>บริการ</th>
+              <th>รายละเอียด</th>
+              <th>จำนวนเงิน</th>
+              <th>สถานะ</th>
+              <th>จัดการ</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${bookings.map(b => `
+              <tr>
+                <td>${new Date(b.createdAt).toLocaleDateString('th-TH')}</td>
+                <td>${b.user}</td>
+                <td>${typeLabels[b.type] || b.type}</td>
+                <td>${b.name || ''} ${b.date || b.startDate || ''}</td>
+                <td>${b.total || '—'}</td>
+                <td><span class="badge ${statusBadge[b.status] || 'badge-pending'}">${statusText[b.status] || b.status}</span></td>
+                <td>
+                  ${b.status === 'pending' ? `<button class="btn-sm" style="background:#06d6a0;color:#fff;border:none;" onclick="updateStatus('${b.id}','confirmed')">ยืนยัน</button>` : ''}
+                  ${b.status === 'confirmed' ? `<button class="btn-sm" style="background:#118ab2;color:#fff;border:none;" onclick="updateStatus('${b.id}','completed')">เสร็จสิ้น</button>` : ''}
+                  ${b.status !== 'cancelled' && b.status !== 'completed' ? `<button class="btn-sm" style="background:#e63946;color:#fff;border:none;" onclick="updateStatus('${b.id}','cancelled')">ยกเลิก</button>` : ''}
+                </td>
+              </tr>
+            `).reverse().join('')}
+          </tbody>
+        </table>`}
+      `;
+    }
+
+    render();
+
+    const user = Auth.getCurrentUser();
+    const navUser = document.getElementById('navUser');
+    if (user) {
+      navUser.innerHTML = `Admin: ${user.username} | <button class="btn-logout" onclick="Auth.logout(); location.href='index.html';">ออกจากระบบ</button>`;
+    }
+
+    document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      Auth.logout();
+      location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
