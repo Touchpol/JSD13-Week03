@@ -2,6 +2,16 @@ const Auth = {
   users: JSON.parse(localStorage.getItem('snapplay_users') || '[]'),
 
   init() {
+    const adminEmail = 'demomail0002@gmail.com';
+    const existingAdmin = this.users.find(u => u.email.toLowerCase() === adminEmail);
+    if (existingAdmin) {
+      if (existingAdmin.password.includes(' ') || existingAdmin.username !== 'demoadmin') {
+        existingAdmin.password = 'Demomail0002';
+        existingAdmin.username = 'demoadmin';
+        this.save();
+      }
+    }
+
     const demoEmail = 'demomail0001@gmail.com';
     if (!this.users.find(u => u.email.toLowerCase() === demoEmail)) {
       this.users.push({
@@ -15,11 +25,10 @@ const Auth = {
       this.save();
     }
 
-    const adminEmail = 'demomail0002@gmail.com';
     if (!this.users.find(u => u.email.toLowerCase() === adminEmail.toLowerCase())) {
       this.users.push({
         id: 'admin_001',
-        username: 'demouser',
+        username: 'demoadmin',
         email: adminEmail,
         password: 'Demomail0002',
         role: 'admin',

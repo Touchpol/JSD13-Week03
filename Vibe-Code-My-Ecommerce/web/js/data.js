@@ -123,6 +123,73 @@ const data = {
         'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933501/Lens/Tair-3s_0004.webp',
         'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933501/Lens/Tair-3s_0005.webp'
       ]
+    },
+    {
+      id: 'L003',
+      owner_name: 'Dmitri Volkov',
+      lens_name: 'Telemar-22A (Телемар-22А)',
+      brand: 'KMZ (КМЗ)', model: 'Telemar-22A',
+      origin: 'USSR (รัสเซีย)',
+      manufactured_year: 1982,
+      condition: 'Excellent - เลนส์ใสไร้รอยขีดข่วน ระยะซูมทำงานปกติ',
+      category: 'Telephoto Prime',
+      mount: 'M42', focal_length: '200mm',
+      aperture: { max: 'f/3.5', min: 'f/22' },
+      blades: 10, weight_g: 750,
+      features: ['เลนส์เทเลพกพาสะดวก', 'โบเก้ 10 เบลด ละมุน', 'เหมาะสำหรับถ่ายภาพพอร์เทรตระยะไกล'],
+      accessories: ['ฝาหน้า-หลัง', 'ฮูดกันแสง', 'กระเป๋าเลนส์'],
+      price_per_day: 600, deposit: 10000,
+      image_urls: [
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942786/Lens/Telemar-22A%20001.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942786/Lens/Telemar-22A%20002.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942787/Lens/Telemar-22A%20003.webp'
+      ]
+    },
+    {
+      id: 'L004',
+      owner_name: 'Sergei Mikhailov',
+      lens_name: 'MTO-500 (МТО-500)',
+      brand: 'KMZ/LZOS (КМЗ/ЛЗОС)', model: 'MTO-500',
+      origin: 'USSR (รัสเซีย)',
+      manufactured_year: 1980,
+      condition: 'Good - รอยใช้งานเล็กน้อย กระจกใส ไม่มีฝ้า',
+      category: 'Super Telephoto Mirror',
+      mount: 'M42', focal_length: '500mm',
+      aperture: { max: 'f/8', min: 'f/8' },
+      blades: 0, weight_g: 1200,
+      features: ['เลนส์ Mirror กระจกสะท้อนแสง', 'ทางยาวโฟกัส 500mm คงที่', 'กะทัดรัดกว่าเลนส์เทเลทั่วไป', 'เอกลักษณ์โบเก้รูปโดนัท'],
+      accessories: ['ฝาหน้า-หลัง', 'ตัวกรอง ND ในตัว', 'ขาตั้ง Tripod Collar', 'กระเป๋า Lens Case'],
+      price_per_day: 800, deposit: 15000,
+      image_urls: [
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942778/Lens/MTO-500%20001.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942779/Lens/MTO-500%20002.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942779/Lens/MTO-500%20003.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942780/Lens/MTO-500%20004.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942781/Lens/MTO-500%20005.webp'
+      ]
+    },
+    {
+      id: 'L005',
+      owner_name: 'Ivan Kuznetsov',
+      lens_name: 'MTO-1000 (МТО-1000)',
+      brand: 'KMZ/LZOS (КМЗ/ЛЗОС)', model: 'MTO-1000',
+      origin: 'USSR (รัสเซีย)',
+      manufactured_year: 1983,
+      condition: 'Good - รอยใช้งานเล็กน้อย กระจกใส ไม่มีรอยขีดข่วน',
+      category: 'Super Telephoto Mirror',
+      mount: 'M42', focal_length: '1000mm',
+      aperture: { max: 'f/10', min: 'f/10' },
+      blades: 0, weight_g: 2500,
+      features: ['เลนส์ Mirror ทางยาวโฟกัส 1000mm', 'ซูเปอร์เทเล ถ่ายพระจันทร์และนก', 'โบเก้รูปโดนัทเอกลักษณ์เฉพาะตัว'],
+      accessories: ['ฝาหน้า-หลัง', 'ตัวกรอง ND ในตัว', 'ขาตั้ง Tripod Collar แข็งแรง', 'กระเป๋า Lens Case ขนาดใหญ่'],
+      price_per_day: 1000, deposit: 20000,
+      image_urls: [
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942772/Lens/MTO-1000%20001.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942773/Lens/MTO-1000%20003.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942775/Lens/MTO-1000%20004.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942776/Lens/MTO-1000%20005.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783942777/Lens/MTO-1000%20006.webp'
+      ]
     }
   ],
 
