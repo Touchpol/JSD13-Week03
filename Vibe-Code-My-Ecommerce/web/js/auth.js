@@ -3,7 +3,7 @@ const Auth = {
 
   init() {
     const demoEmail = 'demomail0001@gmail.com';
-    if (!this.users.find(u => u.email === demoEmail)) {
+    if (!this.users.find(u => u.email.toLowerCase() === demoEmail)) {
       this.users.push({
         id: 'demo_001',
         username: 'demouser',
@@ -15,8 +15,8 @@ const Auth = {
       this.save();
     }
 
-    const adminEmail = 'Demomail0002@gmail.com';
-    if (!this.users.find(u => u.email === adminEmail)) {
+    const adminEmail = 'demomail0002@gmail.com';
+    if (!this.users.find(u => u.email.toLowerCase() === adminEmail.toLowerCase())) {
       this.users.push({
         id: 'admin_001',
         username: 'demouser',
@@ -34,7 +34,7 @@ const Auth = {
   },
 
   register(username, email, password) {
-    if (this.users.find(u => u.email === email)) {
+    if (this.users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
       return { success: false, message: 'อีเมลนี้มีผู้ใช้แล้ว' };
     }
     if (this.users.find(u => u.username === username)) {
@@ -52,7 +52,7 @@ const Auth = {
   },
 
   login(email, password) {
-    const user = this.users.find(u => u.email === email && u.password === password);
+    const user = this.users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
     if (!user) {
       return { success: false, message: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' };
     }
