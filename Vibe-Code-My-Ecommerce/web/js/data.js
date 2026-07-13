@@ -149,7 +149,7 @@ const data = {
       id: 'L004',
       owner_name: 'Sergei Mikhailov',
       lens_name: 'MTO-500 (МТО-500)',
-      brand: 'KMZ/LZOS (КМЗ/ЛЗОС)', model: 'MTO-500',
+      brand: 'LZOS (ЛЗОС)', model: 'MTO-500',
       origin: 'USSR (รัสเซีย)',
 
       condition: 'Good - รอยใช้งานเล็กน้อย กระจกใส ไม่มีฝ้า',
@@ -172,7 +172,7 @@ const data = {
       id: 'L005',
       owner_name: 'Ivan Kuznetsov',
       lens_name: 'MTO-1000 (МТО-1000)',
-      brand: 'KMZ/LZOS (КМЗ/ЛЗОС)', model: 'MTO-1000',
+      brand: 'LZOS (ЛЗОС)', model: 'MTO-1000',
       origin: 'USSR (รัสเซีย)',
 
       condition: 'Good - รอยใช้งานเล็กน้อย กระจกใส ไม่มีรอยขีดข่วน',
