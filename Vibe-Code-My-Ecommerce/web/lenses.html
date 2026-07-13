@@ -31,10 +31,21 @@
   <script src="js/data.js"></script>
   <script src="js/auth.js"></script>
   <script>
+    const user = Auth.getCurrentUser();
+    if (!user) {
+      window.location.href = 'login.html';
+    }
+
     function renderLenses() {
       const container = document.getElementById('lensList');
       container.innerHTML = data.lenses.map(l => `
         <div class="card">
+          <div class="lens-gallery">
+            <img src="${l.image_urls[0]}" alt="${l.lens_name}" class="lens-main-img" onerror="this.style.display='none'">
+            <div class="lens-thumbs">
+              ${l.image_urls.map((url, i) => `<img src="${url}" alt="${l.lens_name} ${i+1}" class="lens-thumb" onclick="this.parentElement.previousElementSibling.src=this.src">`).join('')}
+            </div>
+          </div>
           <h3>${l.lens_name}</h3>
           <p><strong>ยี่ห้อ:</strong> ${l.brand} — ${l.model}</p>
           <p><strong>ประเทศ:</strong> ${l.origin} (${l.manufactured_year})</p>
@@ -46,20 +57,15 @@
           <p><strong>จุดเด่น:</strong></p>
           <ul>${l.features.map(f => `<li>${f}</li>`).join('')}</ul>
           <p><strong>อุปกรณ์แถม:</strong> ${l.accessories.join(', ')}</p>
-          ${Auth.isLoggedIn() ? `<a href="booking.html?type=lens&id=${l.id}&name=${encodeURIComponent(l.lens_name)}" class="btn btn-sm" style="margin-top:0.5rem;">เช่าเลนส์นี้</a>` : '<p style="color:#999;"><a href="login.html">เข้าสู่ระบบ</a> เพื่อเช่า</p>'}
+          <a href="booking.html?type=lens&id=${l.id}&name=${encodeURIComponent(l.lens_name)}" class="btn btn-sm" style="margin-top:0.5rem;">เช่าเลนส์นี้</a>
         </div>
       `).join('');
     }
 
     renderLenses();
 
-    const user = Auth.getCurrentUser();
     const navUser = document.getElementById('navUser');
-    if (user) {
-      navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} | <a href="my-bookings.html">การจองของฉัน</a> | <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
-    } else {
-      navUser.innerHTML = '<a href="login.html">เข้าสู่ระบบ</a> <a href="register.html">สมัครสมาชิก</a>';
-    }
+    navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} | <a href="my-bookings.html">การจองของฉัน</a> | <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
   </script>
 </body>
 </html>

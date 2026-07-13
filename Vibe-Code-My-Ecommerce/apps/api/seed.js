@@ -91,7 +91,15 @@ const seed = async () => {
         aperture: { max: 'f/2.8', min: 'f/22' }, blades: 8, weight_g: 650,
         features: ['เลนส์รัสเซียระดับตำนาน', 'โบเก้สวย 10 เบลด', 'คมชัดที่ f/4-8'],
         accessories_included: ['ฝาหน้า-หลัง', 'กระเป๋าเลนส์หนังแท้', 'Hood โลหะ'],
-        price_per_day: 500, deposit: 8000
+        price_per_day: 500, deposit: 8000,
+        image_urls: {
+          front: 'Lens/Jupiter-6_0001.jpg',
+          back: 'Lens/Jupiter-6_0002.webp',
+          sample_photos: [
+            'Lens/Jupiter-6_0003.webp',
+            'Lens/Jupiter-6_0004.webp'
+          ]
+        }
       },
       {
         owner_id: users[7]._id, lens_name: 'Tair-3s (Таир-3с)',
@@ -100,7 +108,16 @@ const seed = async () => {
         aperture: { max: 'f/4.5', min: 'f/22' }, blades: 8, weight_g: 980,
         features: ['เลนส์เทเลถ่ายระยะไกล', 'ถ่ายนก และคอนเสิร์ต', 'โบเก้เนียนสวย'],
         accessories_included: ['ฝาหน้า-หลัง', 'ขาตั้ง Tripod Collar', 'กระเป๋า Lens Case'],
-        price_per_day: 700, deposit: 12000
+        price_per_day: 700, deposit: 12000,
+        image_urls: {
+          front: 'Lens/Tair-3s_0001.webp',
+          back: 'Lens/Tair-3s_0002.webp',
+          sample_photos: [
+            'Lens/Tair-3s_0003.webp',
+            'Lens/Tair-3s_0004.webp',
+            'Lens/Tair-3s_0005.webp'
+          ]
+        }
       }
     ]);
     console.log('Created lenses');

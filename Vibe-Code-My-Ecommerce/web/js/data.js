@@ -93,7 +93,13 @@ const data = {
       blades: 8, weight_g: 650,
       features: ['เลนส์รัสเซียระดับตำนาน', 'โบเก้สวย 10 เบลด', 'คมชัดที่ f/4-8'],
       accessories: ['ฝาหน้า-หลัง', 'กระเป๋าเลนส์หนังแท้', 'Hood โลหะ'],
-      price_per_day: 500, deposit: 8000
+      price_per_day: 500, deposit: 8000,
+      image_urls: [
+        'Lens/Jupiter-6_0001.jpg',
+        'Lens/Jupiter-6_0002.webp',
+        'Lens/Jupiter-6_0003.webp',
+        'Lens/Jupiter-6_0004.webp'
+      ]
     },
     {
       id: 'L002',
@@ -109,7 +115,14 @@ const data = {
       blades: 8, weight_g: 980,
       features: ['เลนส์เทเลถ่ายระยะไกล', 'ถ่ายนก และคอนเสิร์ต', 'โบเก้เนียนสวย'],
       accessories: ['ฝาหน้า-หลัง', 'ขาตั้ง Tripod Collar', 'กระเป๋า Lens Case'],
-      price_per_day: 700, deposit: 12000
+      price_per_day: 700, deposit: 12000,
+      image_urls: [
+        'Lens/Tair-3s_0001.webp',
+        'Lens/Tair-3s_0002.webp',
+        'Lens/Tair-3s_0003.webp',
+        'Lens/Tair-3s_0004.webp',
+        'Lens/Tair-3s_0005.webp'
+      ]
     }
   ],
 

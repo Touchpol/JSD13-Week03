@@ -1,6 +1,21 @@
 const Auth = {
   users: JSON.parse(localStorage.getItem('snapplay_users') || '[]'),
 
+  init() {
+    const demoEmail = 'demomail0001@gmail.com';
+    if (!this.users.find(u => u.email === demoEmail)) {
+      this.users.push({
+        id: 'demo_001',
+        username: 'demouser',
+        email: demoEmail,
+        password: 'Demomail0001',
+        role: 'customer',
+        created_at: new Date().toISOString()
+      });
+      this.save();
+    }
+  },
+
   save() {
     localStorage.setItem('snapplay_users', JSON.stringify(this.users));
   },
@@ -44,3 +59,5 @@ const Auth = {
     return !!this.getCurrentUser();
   }
 };
+
+Auth.init();

@@ -214,6 +214,33 @@ tr:hover { background: #f8f9fa; }
 .back-link:hover { text-decoration: underline; }
 
 /* Responsive */
+/* Lens Gallery */
+.lens-gallery { margin-bottom: 1rem; }
+.lens-main-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f0f0f0;
+}
+.lens-thumbs {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  flex-wrap: wrap;
+}
+.lens-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+  background: #f0f0f0;
+}
+.lens-thumb:hover { border-color: #0f3460; }
+
 @media (max-width: 768px) {
   .navbar { flex-direction: column; gap: 0.5rem; }
   .nav-links { flex-wrap: wrap; justify-content: center; }
