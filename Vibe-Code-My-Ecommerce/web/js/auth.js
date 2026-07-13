@@ -21,7 +21,7 @@ const Auth = {
         id: 'admin_001',
         username: 'demouser',
         email: adminEmail,
-        password: 'Demomail 0002',
+        password: 'Demomail0002',
         role: 'admin',
         created_at: new Date().toISOString()
       });
