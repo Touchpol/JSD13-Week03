@@ -88,7 +88,7 @@ const seed = async () => {
         owner_id: users[6]._id, lens_name: 'Jupiter-6 (Юпитер-6)',
         brand: 'KMZ (КМЗ)', model: 'Jupiter-6',         origin: 'USSR', condition: 'Excellent', category: 'Portrait Prime', mount: 'M42', focal_length: '135mm',
         aperture: { max: 'f/2.8', min: 'f/22' }, blades: 8, weight_g: 650,
-        features: ['เลนส์รัสเซียระดับตำนาน', 'โบเก้สวย 10 เบลด', 'คมชัดที่ f/4-8'],
+        features: ['เลนส์รัสเซียระดับตำนาน', '10เบลด โบเก้กลมสวย', 'คมชัดที่ f/4-8'],
         accessories_included: ['ฝาหน้า-หลัง', 'กระเป๋าเลนส์หนังแท้', 'Hood โลหะ'],
         price_per_day: 500, deposit: 8000,
         image_urls: {

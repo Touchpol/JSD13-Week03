@@ -91,7 +91,7 @@ const data = {
       mount: 'M42', focal_length: '135mm',
       aperture: { max: 'f/2.8', min: 'f/22' },
       blades: 8, weight_g: 650,
-      features: ['เลนส์รัสเซียระดับตำนาน', 'โบเก้สวย 10 เบลด', 'คมชัดที่ f/4-8'],
+      features: ['เลนส์รัสเซียระดับตำนาน', '10เบลด โบเก้กลมสวย', 'คมชัดที่ f/4-8'],
       accessories: ['ฝาหน้า-หลัง', 'กระเป๋าเลนส์หนังแท้', 'Hood โลหะ'],
       price_per_day: 500, deposit: 8000,
       image_urls: [
@@ -136,7 +136,7 @@ const data = {
       mount: 'M42', focal_length: '200mm',
       aperture: { max: 'f/3.5', min: 'f/22' },
       blades: 10, weight_g: 750,
-      features: ['เลนส์เทเลพกพาสะดวก', 'โบเก้ 10 เบลด ละมุน', 'เหมาะสำหรับถ่ายภาพพอร์เทรตระยะไกล'],
+      features: ['เลนส์เทเลพกพาสะดวก', '10เบลด โบเก้ละมุน', 'เหมาะสำหรับถ่ายภาพพอร์เทรตระยะไกล'],
       accessories: ['ฝาหน้า-หลัง', 'ฮูดกันแสง', 'กระเป๋าเลนส์'],
       price_per_day: 600, deposit: 10000,
       image_urls: [
