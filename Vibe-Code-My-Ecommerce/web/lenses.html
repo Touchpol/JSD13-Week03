@@ -48,7 +48,7 @@
             </div>
           </div>
           <h3>${l.lens_name}</h3>
-          <p><strong>${l.brand === 'KMZ (КМЗ)' ? 'โรงงาน' : 'ยี่ห้อ'}:</strong> ${l.brand}${l.brand === 'KMZ (КМЗ)' ? '' : ' — ' + l.model}</p>
+          <p><strong>${l.brand === 'KMZ (КМЗ)' || l.brand === 'LZOS (ЛЗОС)' ? 'โรงงาน' : 'ยี่ห้อ'}:</strong> ${l.brand}${l.brand === 'KMZ (КМЗ)' || l.brand === 'LZOS (ЛЗОС)' ? '' : ' — ' + l.model}</p>
           <p><strong>ประเทศ:</strong> ${l.origin}</p>
           <p><strong>ระยะ:</strong> ${l.focal_length} | <strong>Mount:</strong> ${l.mount}</p>
           <p><strong>รูรับแสง:</strong> ${l.aperture.max} — ${l.aperture.min}</p>
