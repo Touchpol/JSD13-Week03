@@ -1,0 +1,16 @@
+{
+  "name": "vibe-code-my-ecommerce",
+  "version": "1.0.0",
+  "description": "แพลตฟอร์ม E-Commerce ที่รวบรวมบริการ 3 ประเภทในที่เดียว: - **📸 จองช่างภาพ** — เลือกช่างภาพจากผลงาน ดูตารางว่าง จองสะดวก - **🔭 เช่าเลนส์** — เช่าเลนส์ราคาแพง คำนวณราคาตามวันที่เช่า - **🎮 ซื้อเวลาสตรีมเมอร์** — เลือกสตรีมเมอร์ ดูแพ็กเกจ จองเวลาเล่นเกม",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cloudinary": "^2.10.0"
+  }
+}

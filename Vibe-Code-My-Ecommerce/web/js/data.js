@@ -95,10 +95,10 @@ const data = {
       accessories: ['ฝาหน้า-หลัง', 'กระเป๋าเลนส์หนังแท้', 'Hood โลหะ'],
       price_per_day: 500, deposit: 8000,
       image_urls: [
-        'Lens/Jupiter-6_0001.jpg',
-        'Lens/Jupiter-6_0002.webp',
-        'Lens/Jupiter-6_0003.webp',
-        'Lens/Jupiter-6_0004.webp'
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933495/Lens/Jupiter-6_0001.jpg',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933496/Lens/Jupiter-6_0002.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933497/Lens/Jupiter-6_0003.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933498/Lens/Jupiter-6_0004.webp'
       ]
     },
     {
@@ -117,11 +117,11 @@ const data = {
       accessories: ['ฝาหน้า-หลัง', 'ขาตั้ง Tripod Collar', 'กระเป๋า Lens Case'],
       price_per_day: 700, deposit: 12000,
       image_urls: [
-        'Lens/Tair-3s_0001.webp',
-        'Lens/Tair-3s_0002.webp',
-        'Lens/Tair-3s_0003.webp',
-        'Lens/Tair-3s_0004.webp',
-        'Lens/Tair-3s_0005.webp'
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933499/Lens/Tair-3s_0001.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933499/Lens/Tair-3s_0002.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933500/Lens/Tair-3s_0003.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933501/Lens/Tair-3s_0004.webp',
+        'https://res.cloudinary.com/wcbjuu3d/image/upload/v1783933501/Lens/Tair-3s_0005.webp'
       ]
     }
   ],
