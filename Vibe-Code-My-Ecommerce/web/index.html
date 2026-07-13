@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapPlay - จองช่างภาพ เช่าเลนส์ ซื้อเวลาสตรีมเมอร์</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links" id="navLinks">
+      <a href="photographers.html">ช่างภาพ</a>
+      <a href="streamers.html">สตรีมเมอร์</a>
+      <a href="lenses.html">เช่าเลนส์</a>
+      <span id="navUser"></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="home">
+      <h1>ยินดีต้อนรับสู่ SnapPlay</h1>
+      <p>จองช่างภาพ เช่าเลนส์ ซื้อเวลาสตรีมเมอร์ ได้ในที่เดียว</p>
+
+      <div class="services">
+        <div class="service-card">
+          <div class="icon">📸</div>
+          <h2>จองช่างภาพ</h2>
+          <p>เลือกช่างภาพจากผลงาน ดูตารางว่าง จองสะดวก มีระบบยืนยันการจอง พร้อมเรทราคาชัดเจน</p>
+          <a href="photographers.html">ดูช่างภาพทั้งหมด</a>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🎮</div>
+          <h2>ซื้อเวลาสตรีมเมอร์</h2>
+          <p>เลือกสตรีมเมอร์ที่ชอบ ดูแพ็กเกจ จองเวลา เล่นเกมสุดโปรดร่วมกันกับไอดอลของคุณ</p>
+          <a href="streamers.html">ดูสตรีมเมอร์ทั้งหมด</a>
+        </div>
+
+        <div class="service-card">
+          <div class="icon">🔭</div>
+          <h2>เช่าเลนส์</h2>
+          <p>เช่าเลนส์ราคาแพง ราคาคำนวณตามวันที่เช่า ชนิดเลนส์ พร้อมระบบประกันและมัดจำ</p>
+          <a href="lenses.html">ดูเลนส์ทั้งหมด</a>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <h2>เกี่ยวกับ SnapPlay</h2>
+        <p style="max-width: 600px; margin: 1rem auto; line-height: 1.8;">
+          แพลตฟอร์มที่รวบรวมบริการ 3 ประเภทในที่เดียว ไม่ว่าคุณจะต้องการจ้างช่างภาพมืออาชีพ
+          เช่าเลนส์ระดับโปร หรืออยากเล่นเกมกับสตรีมเมอร์ที่ชื่นชอบ เรามีให้ครบ!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">&copy; 2026 SnapPlay. All rights reserved.</div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    const user = Auth.getCurrentUser();
+    const navUser = document.getElementById('navUser');
+    if (user) {
+      navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} | <a href="my-bookings.html">การจองของฉัน</a> | <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
+    } else {
+      navUser.innerHTML = '<a href="login.html">เข้าสู่ระบบ</a> <a href="register.html">สมัครสมาชิก</a>';
+    }
+  </script>
+</body>
+</html>

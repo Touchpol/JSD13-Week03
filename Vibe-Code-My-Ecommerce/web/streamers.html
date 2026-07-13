@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>สตรีมเมอร์ - SnapPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links" id="navLinks">
+      <a href="photographers.html">ช่างภาพ</a>
+      <a href="streamers.html">สตรีมเมอร์</a>
+      <a href="lenses.html">เช่าเลนส์</a>
+      <span id="navUser"></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>🎮 สตรีมเมอร์</h1>
+    </div>
+
+    <div class="card-grid" id="streamerList"></div>
+  </div>
+
+  <div class="footer">&copy; 2026 SnapPlay</div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function renderStreamers() {
+      const container = document.getElementById('streamerList');
+      container.innerHTML = data.streamers.map(s => `
+        <div class="card">
+          <h3>${s.display_name}</h3>
+          <p><strong>ชื่อจริง:</strong> ${s.real_name}</p>
+          <p><strong>คะแนน:</strong> ${s.rating} ⭐ (${s.review_count} รีวิว)</p>
+          <p><strong>แพลตฟอร์ม:</strong> ${s.platforms.map(p => `${p.name} (${p.subscribers || p.followers} คน)`).join(', ')}</p>
+          <p><strong>เกมที่เล่น:</strong></p>
+          <ul>${s.games.map(g => `<li>${g.name} (${g.hours_played} ชม.)</li>`).join('')}</ul>
+          <p><strong>แพ็กเกจ:</strong></p>
+          <ul>${s.packages.map(pkg => `<li>${pkg.name} — ${pkg.price} บาท</li>`).join('')}</ul>
+          <p class="bio" style="font-style:italic;color:#666;margin-top:0.5rem;">${s.bio}</p>
+          ${Auth.isLoggedIn() ? `<a href="booking.html?type=streamer&id=${s.id}&name=${encodeURIComponent(s.display_name)}" class="btn btn-sm" style="margin-top:0.5rem;">ซื้อเวลาสตรีมเมอร์</a>` : '<p style="color:#999;"><a href="login.html">เข้าสู่ระบบ</a> เพื่อจอง</p>'}
+        </div>
+      `).join('');
+    }
+
+    renderStreamers();
+
+    const user = Auth.getCurrentUser();
+    const navUser = document.getElementById('navUser');
+    if (user) {
+      navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} | <a href="my-bookings.html">การจองของฉัน</a> | <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
+    } else {
+      navUser.innerHTML = '<a href="login.html">เข้าสู่ระบบ</a> <a href="register.html">สมัครสมาชิก</a>';
+    }
+  </script>
+</body>
+</html>

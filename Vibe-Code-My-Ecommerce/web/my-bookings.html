@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>การจองของฉัน - SnapPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links" id="navLinks">
+      <a href="photographers.html">ช่างภาพ</a>
+      <a href="streamers.html">สตรีมเมอร์</a>
+      <a href="lenses.html">เช่าเลนส์</a>
+      <span id="navUser"></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>📋 การจองของฉัน</h1>
+    </div>
+
+    <div id="bookingList"></div>
+  </div>
+
+  <div class="footer">&copy; 2026 SnapPlay</div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (!Auth.isLoggedIn()) {
+      window.location.href = 'login.html';
+    }
+
+    function renderBookings() {
+      const container = document.getElementById('bookingList');
+      const user = Auth.getCurrentUser();
+      const bookings = JSON.parse(localStorage.getItem('snapplay_bookings') || '[]')
+        .filter(b => b.user === user.email);
+
+      if (bookings.length === 0) {
+        container.innerHTML = '<p style="text-align:center;padding:2rem;">ยังไม่มีการจอง <a href="index.html">ไปจองเลย</a></p>';
+        return;
+      }
+
+      container.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>วันที่</th>
+              <th>บริการ</th>
+              <th>รายละเอียด</th>
+              <th>สถานะ</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${bookings.map(b => {
+              const typeIcon = { lens: '🔭 เช่าเลนส์', photographer: '📸 จองช่างภาพ', streamer: '🎮 ซื้อเวลาสตรีมเมอร์' };
+              const statusClass = { pending: 'status-pending', confirmed: 'status-confirmed', completed: 'status-completed', cancelled: 'status-cancelled' };
+              const statusText = { pending: 'รอยืนยัน', confirmed: 'ยืนยันแล้ว', completed: 'เสร็จสิ้น', cancelled: 'ยกเลิก' };
+              return `<tr>
+                <td>${new Date(b.createdAt).toLocaleDateString('th-TH')}</td>
+                <td>${typeIcon[b.type] || b.type}</td>
+                <td>${b.name || ''} ${b.date || b.startDate || ''}</td>
+                <td class="${statusClass[b.status] || 'status-pending'}">${statusText[b.status] || b.status}</td>
+              </tr>`;
+            }).reverse().join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    renderBookings();
+
+    const user = Auth.getCurrentUser();
+    const navUser = document.getElementById('navUser');
+    if (user) {
+      navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} |  <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
+    }
+  </script>
+</body>
+</html>

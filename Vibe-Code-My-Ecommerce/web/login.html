@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เข้าสู่ระบบ - SnapPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links">
+      <a href="photographers.html">ช่างภาพ</a>
+      <a href="streamers.html">สตรีมเมอร์</a>
+      <a href="lenses.html">เช่าเลนส์</a>
+      <a href="login.html">เข้าสู่ระบบ</a>
+      <a href="register.html">สมัครสมาชิก</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="form-page">
+      <h2>เข้าสู่ระบบ</h2>
+      <div id="errorMsg" class="error"></div>
+      <div id="successMsg" class="success"></div>
+      <form id="loginForm">
+        <input type="email" id="email" placeholder="อีเมล" required>
+        <input type="password" id="password" placeholder="รหัสผ่าน" required>
+        <button type="submit">เข้าสู่ระบบ</button>
+      </form>
+      <p style="text-align:center;margin-top:1rem;">ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a></p>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const result = Auth.login(email, password);
+      if (result.success) {
+        document.getElementById('successMsg').textContent = 'เข้าสู่ระบบสำเร็จ! กำลังพาไปหน้าแรก...';
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+      } else {
+        document.getElementById('errorMsg').textContent = result.message;
+      }
+    });
+  </script>
+</body>
+</html>

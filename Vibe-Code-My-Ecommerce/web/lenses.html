@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เช่าเลนส์ - SnapPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links" id="navLinks">
+      <a href="photographers.html">ช่างภาพ</a>
+      <a href="streamers.html">สตรีมเมอร์</a>
+      <a href="lenses.html">เช่าเลนส์</a>
+      <span id="navUser"></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>🔭 เช่าเลนส์</h1>
+    </div>
+
+    <div class="card-grid" id="lensList"></div>
+  </div>
+
+  <div class="footer">&copy; 2026 SnapPlay</div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function renderLenses() {
+      const container = document.getElementById('lensList');
+      container.innerHTML = data.lenses.map(l => `
+        <div class="card">
+          <h3>${l.lens_name}</h3>
+          <p><strong>ยี่ห้อ:</strong> ${l.brand} — ${l.model}</p>
+          <p><strong>ประเทศ:</strong> ${l.origin} (${l.manufactured_year})</p>
+          <p><strong>ระยะ:</strong> ${l.focal_length} | <strong>Mount:</strong> ${l.mount}</p>
+          <p><strong>รูรับแสง:</strong> ${l.aperture.max} — ${l.aperture.min}</p>
+          <p><strong>ใบมีด:</strong> ${l.blades} ใบ | <strong>น้ำหนัก:</strong> ${l.weight_g}g</p>
+          <p><strong>ราคาเช่า:</strong> ${l.price_per_day} บาท/วัน | <strong>มัดจำ:</strong> ${l.deposit} บาท</p>
+          <p><strong>สภาพ:</strong> ${l.condition}</p>
+          <p><strong>จุดเด่น:</strong></p>
+          <ul>${l.features.map(f => `<li>${f}</li>`).join('')}</ul>
+          <p><strong>อุปกรณ์แถม:</strong> ${l.accessories.join(', ')}</p>
+          ${Auth.isLoggedIn() ? `<a href="booking.html?type=lens&id=${l.id}&name=${encodeURIComponent(l.lens_name)}" class="btn btn-sm" style="margin-top:0.5rem;">เช่าเลนส์นี้</a>` : '<p style="color:#999;"><a href="login.html">เข้าสู่ระบบ</a> เพื่อเช่า</p>'}
+        </div>
+      `).join('');
+    }
+
+    renderLenses();
+
+    const user = Auth.getCurrentUser();
+    const navUser = document.getElementById('navUser');
+    if (user) {
+      navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} | <a href="my-bookings.html">การจองของฉัน</a> | <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
+    } else {
+      navUser.innerHTML = '<a href="login.html">เข้าสู่ระบบ</a> <a href="register.html">สมัครสมาชิก</a>';
+    }
+  </script>
+</body>
+</html>

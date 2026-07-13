@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ช่างภาพ - SnapPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links" id="navLinks">
+      <a href="photographers.html">ช่างภาพ</a>
+      <a href="streamers.html">สตรีมเมอร์</a>
+      <a href="lenses.html">เช่าเลนส์</a>
+      <span id="navUser"></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>📸 ช่างภาพ</h1>
+    </div>
+
+    <div class="card-grid" id="photographerList"></div>
+  </div>
+
+  <div class="footer">&copy; 2026 SnapPlay</div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    function renderPhotographers() {
+      const container = document.getElementById('photographerList');
+      container.innerHTML = data.photographers.map(p => `
+        <div class="card">
+          <h3>${p.display_name}</h3>
+          <p><strong>ชื่อจริง:</strong> ${p.full_name}</p>
+          <p><strong>สถานที่:</strong> ${p.location}</p>
+          <p><strong>เบอร์:</strong> ${p.phone} | <strong>Line:</strong> ${p.line_id}</p>
+          <p><strong>เรทราคา:</strong></p>
+          <ul>
+            <li>รายชั่วโมง: ${p.pricing.hourly_rate} บาท</li>
+            <li>ครึ่งวัน (4 ชม.): ${p.pricing.half_day_rate} บาท</li>
+            <li>เต็มวัน (8 ชม.): ${p.pricing.full_day_rate} บาท</li>
+          </ul>
+          <p><strong>คะแนน:</strong> ${p.rating} ⭐ (${p.review_count} รีวิว)</p>
+          <p><strong>อุปกรณ์:</strong></p>
+          <ul>${p.equipment.map(e => `<li>${e.camera}: ${e.lenses.join(', ')}</li>`).join('')}</ul>
+          <p class="bio" style="font-style:italic;color:#666;margin-top:0.5rem;">${p.bio}</p>
+          ${Auth.isLoggedIn() ? `<a href="booking.html?type=photographer&id=${p.id}&name=${encodeURIComponent(p.display_name)}" class="btn btn-sm" style="margin-top:0.5rem;">จองช่างภาพ</a>` : '<p style="color:#999;"><a href="login.html">เข้าสู่ระบบ</a> เพื่อจอง</p>'}
+        </div>
+      `).join('');
+    }
+
+    renderPhotographers();
+
+    const user = Auth.getCurrentUser();
+    const navUser = document.getElementById('navUser');
+    if (user) {
+      navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} | <a href="my-bookings.html">การจองของฉัน</a> | <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
+    } else {
+      navUser.innerHTML = '<a href="login.html">เข้าสู่ระบบ</a> <a href="register.html">สมัครสมาชิก</a>';
+    }
+  </script>
+</body>
+</html>

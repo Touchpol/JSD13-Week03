@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จอง - SnapPlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">SnapPlay</a>
+    <div class="nav-links" id="navLinks">
+      <a href="photographers.html">ช่างภาพ</a>
+      <a href="streamers.html">สตรีมเมอร์</a>
+      <a href="lenses.html">เช่าเลนส์</a>
+      <span id="navUser"></span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <a href="javascript:history.back()" class="back-link">← กลับ</a>
+    <div class="form-page" style="max-width:600px;">
+      <h2 id="formTitle">จอง</h2>
+      <div id="errorMsg" class="error"></div>
+      <div id="successMsg" class="success"></div>
+
+      <form id="bookingForm">
+        <div id="serviceInfo" style="background:#f8f9fa;padding:1rem;border-radius:8px;margin-bottom:1rem;"></div>
+
+        <div id="lensFields" style="display:none;">
+          <label><strong>วันที่เริ่มเช่า</strong></label>
+          <input type="date" id="startDate">
+          <label><strong>วันที่คืน</strong></label>
+          <input type="date" id="endDate">
+        </div>
+
+        <div id="photographerFields" style="display:none;">
+          <label><strong>วันที่จอง</strong></label>
+          <input type="date" id="bookingDate">
+          <label><strong>จำนวนชั่วโมง</strong></label>
+          <select id="duration">
+            <option value="2">2 ชั่วโมง</option>
+            <option value="4">4 ชั่วโมง (ครึ่งวัน)</option>
+            <option value="8">8 ชั่วโมง (เต็มวัน)</option>
+          </select>
+        </div>
+
+        <div id="streamerFields" style="display:none;">
+          <label><strong>เลือกแพ็กเกจ</strong></label>
+          <select id="packageSelect"></select>
+          <label><strong>วันที่ต้องการเล่น</strong></label>
+          <input type="date" id="streamerDate">
+        </div>
+
+        <div id="priceDisplay" style="background:#e8f4f8;padding:1rem;border-radius:8px;margin:1rem 0;text-align:center;font-size:1.2rem;font-weight:bold;"></div>
+
+        <button type="submit" id="submitBtn">ยืนยันการจอง</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (!Auth.isLoggedIn()) {
+      window.location.href = 'login.html';
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    const id = params.get('id');
+    const name = params.get('name');
+
+    const user = Auth.getCurrentUser();
+
+    function setupForm() {
+      const info = document.getElementById('serviceInfo');
+      const title = document.getElementById('formTitle');
+
+      if (type === 'photographer') {
+        title.textContent = `📸 จองช่างภาพ: ${name}`;
+        info.innerHTML = `<p><strong>บริการ:</strong> จองช่างภาพ ${name}</p>`;
+        document.getElementById('photographerFields').style.display = 'block';
+      } else if (type === 'streamer') {
+        title.textContent = `🎮 ซื้อเวลาสตรีมเมอร์: ${name}`;
+        const streamer = data.streamers.find(s => s.id === id);
+        const select = document.getElementById('packageSelect');
+        if (streamer) {
+          select.innerHTML = streamer.packages.map((pkg, i) =>
+            `<option value="${i}" data-price="${pkg.price}" data-hours="${pkg.hours}">${pkg.name} — ${pkg.price} บาท (${pkg.description})</option>`
+          ).join('');
+        }
+        info.innerHTML = `<p><strong>บริการ:</strong> ซื้อเวลาสตรีมเมอร์ ${name}</p>`;
+        document.getElementById('streamerFields').style.display = 'block';
+      } else if (type === 'lens') {
+        title.textContent = `🔭 เช่าเลนส์: ${name}`;
+        info.innerHTML = `<p><strong>บริการ:</strong> เช่าเลนส์ ${name}</p>`;
+        document.getElementById('lensFields').style.display = 'block';
+      }
+
+      updatePrice();
+    }
+
+    function updatePrice() {
+      const priceDisplay = document.getElementById('priceDisplay');
+      if (type === 'lens') {
+        const start = document.getElementById('startDate').value;
+        const end = document.getElementById('endDate').value;
+        if (start && end) {
+          const days = Math.ceil((new Date(end) - new Date(start)) / (1000*60*60*24));
+          if (days > 0) {
+            const lens = data.lenses.find(l => l.id === id);
+            const total = days * (lens ? lens.price_per_day : 500);
+            priceDisplay.textContent = `รวม: ${total} บาท (${days} วัน × ${lens ? lens.price_per_day : 500} บาท/วัน)`;
+            return;
+          }
+        }
+        priceDisplay.textContent = 'กรุณาเลือกวันที่เช่าและวันที่คืน';
+      } else if (type === 'streamer') {
+        const select = document.getElementById('packageSelect');
+        const opt = select.options[select.selectedIndex];
+        priceDisplay.textContent = `รวม: ${opt.dataset.price} บาท (${opt.textContent})`;
+      } else if (type === 'photographer') {
+        const hours = parseInt(document.getElementById('duration').value);
+        const photographer = data.photographers.find(p => p.id === id);
+        const rate = photographer ? photographer.pricing.hourly_rate : 1000;
+        priceDisplay.textContent = `รวม: ${hours * rate} บาท (${hours} ชั่วโมง × ${rate} บาท/ชม.)`;
+      }
+    }
+
+    document.getElementById('startDate')?.addEventListener('change', updatePrice);
+    document.getElementById('endDate')?.addEventListener('change', updatePrice);
+    document.getElementById('duration')?.addEventListener('change', updatePrice);
+    document.getElementById('packageSelect')?.addEventListener('change', updatePrice);
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const booking = {
+        id: 'B' + Date.now(),
+        type: type,
+        user: user.email,
+        name: name,
+        status: 'pending',
+        createdAt: new Date().toISOString()
+      };
+
+      if (type === 'lens') {
+        booking.startDate = document.getElementById('startDate').value;
+        booking.endDate = document.getElementById('endDate').value;
+      } else if (type === 'streamer') {
+        const select = document.getElementById('packageSelect');
+        booking.packageName = select.options[select.selectedIndex].textContent;
+        booking.date = document.getElementById('streamerDate').value;
+      } else if (type === 'photographer') {
+        booking.date = document.getElementById('bookingDate').value;
+        booking.duration = document.getElementById('duration').value;
+      }
+
+      const saved = JSON.parse(localStorage.getItem('snapplay_bookings') || '[]');
+      saved.push(booking);
+      localStorage.setItem('snapplay_bookings', JSON.stringify(saved));
+
+      document.getElementById('successMsg').textContent = 'จองสำเร็จ! กำลังไปหน้าการจองของฉัน...';
+      setTimeout(() => { window.location.href = 'my-bookings.html'; }, 1500);
+    });
+
+    setupForm();
+
+    const navUser = document.getElementById('navUser');
+    if (user) {
+      navUser.innerHTML = `ยินดีต้อนรับ, ${user.username} | <a href="my-bookings.html">การจองของฉัน</a> | <button class="btn-logout" onclick="Auth.logout(); location.reload();">ออกจากระบบ</button>`;
+    }
+  </script>
+</body>
+</html>
