@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/api/login" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="please add your username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+         <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label>Select Package:</label><br>
+            <input type="radio" id="free" name="package" value="free" required>
+            <label for="free">Free</label>
+            <input type="radio" id="premium" name="package" value="premium">
+            <label for="premium">Premium</label>
+        </div>
+        <div>
+            <label>Interest:</label><br>
+            <input type="checkbox" id="movie" name="interest" value="movie">
+            <label for="movie">ดูหนัง</label>
+            <input type="checkbox" id="music" name="interest" value="music">
+            <label for="music">ฟังเพลง</label>
+            <input type="checkbox" id="game" name="interest" value="game">
+            <label for="game">เล่นเกม</label>
+        </div>
+        <br>
+        <button type="submit">ยืนยันการสมัคร</button>
+    </form>   
+</body>
+</html>
+
+//เลือกได้อันเดียวต้องพิมพ์Select Package
