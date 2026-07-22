@@ -1,0 +1,2 @@
+Professional Summary
+Transitioned from a legal background to a Junior Software Developer equipped with full-stack training from Generation Thailand and a Bachelor of Law from Kasetsart University. Combines rigorous analytical thinking and regulatory awareness with hands-on technical skills in HTML, CSS, JavaScript, Python, React.js, Node.js, and SQL/NoSQL databases. Proven ability to synthesize complex concepts, manage workflows, and solve problems collaboratively, eager to contribute legal-tech and software development expertise to dynamic engineering teams.
